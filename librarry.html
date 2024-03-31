@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <a href="/dashboard.html"> Dashboard</a>
+</head>
+<body>
+    <form id="managment">
+        <label  for="">Library Management System</label>
+        <input id="Book" type="text" placeholder="Book Name">
+        <input id="Author" type="text" placeholder="Author Name">
+        <input id="Discription" type="text" placeholder="Book Discription">
+        <label for="">Adding Date</label>
+        <input id="date" type="datetime-local">
+        <select id="category">
+            <option value="">Select Category</option>
+            <option value="Self Help">Selt Help</option>
+            
+            <option value="Fiction">Fiction</option>
+            <option value="Finance">Finance</option>
+        </select>
+        <input id="price" type="number" placeholder="Book Price">
+        <input id="submit" type="submit"/>
+
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Discription</th>
+                <th>Added Date</th>
+                <th>Category</th>
+                <th>Buy</th>
+                <th>Book Mark</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+var form = document.querySelector("form");
+form.addEventListener("submit",function(){
+    getdata()
+});
+
+var arr = JSON.parse(localStorage.getItem("Book-list")) || [];
+
+
+
+function getdata(){
+    event.preventDefault();
+    const book = document.getElementById("Book").value 
+    const Author = document.getElementById("Author").value 
+    const Discription = document.getElementById("Discription").value
+    const category = document.getElementById("category").value
+    const date = document.getElementById("date").value
+    const price = document.getElementById("price").value
+
+    var obj = {
+        book : book,
+        Author : Author,
+        Discription : Discription,
+        category : category,
+        date : date,
+        price: price,
+    }
+
+    arr.push(obj);
+    console.log(arr);
+    localStorage.setItem("Book-list",JSON.stringify(arr));
+    // displaydata(arr)
+
+
+    function getdata(arr){
+
+    
+document.querySelector("tbody").innerHTML= "";
+arr.array.forEach(element => {
+    var tr = document.createElement("tr");
+
+var td1 = document.createElement("td");
+td1.textContent = book;
+
+var td2 = document.createElement("td");
+td2.textContent = Author;
+
+var td3 = document.createElement("td");
+td3.textContent = Discription;
+
+var td4 = document.createElement("td");
+td4.textContent = date;
+
+var td5 = document.createElement("td");
+td5.textContent = category;
+
+var td6 = document.createElement("td");
+td6.textContent=category;
+
+tr.append(td1,td2,td3,td4,td5,td6,);
+var tbody = document.querySelector("tbody");
+tbody.append(tr);
+    
+});
+
+   
+
+}
+}
+
+
+    
+
+
+
+
+   
+    
+
+
+
+
+
+</script>
