@@ -52,6 +52,7 @@ form.addEventListener("submit",function(){
 });
 
 var arr = JSON.parse(localStorage.getItem("Book-list")) || [];
+displaydata(arr);
 
 
 
@@ -71,49 +72,71 @@ function getdata(){
         category : category,
         date : date,
         price: price,
-    }
+    };
 
     arr.push(obj);
     console.log(arr);
     localStorage.setItem("Book-list",JSON.stringify(arr));
-    // displaydata(arr)
+    displaydata(arr)
+}
 
 
-    function getdata(arr){
+    function displaydata(arr){
 
     
 document.querySelector("tbody").innerHTML= "";
-arr.array.forEach(element => {
+arr.forEach(function(ele,i) {
     var tr = document.createElement("tr");
+    var te = document.createElement("te");
 
 var td1 = document.createElement("td");
-td1.textContent = book;
+td1.textContent = ele.book;
 
 var td2 = document.createElement("td");
-td2.textContent = Author;
+td2.textContent = ele.Author;
 
 var td3 = document.createElement("td");
-td3.textContent = Discription;
+td3.textContent = ele.Discription;
 
 var td4 = document.createElement("td");
-td4.textContent = date;
+td4.textContent = ele.date;
 
 var td5 = document.createElement("td");
-td5.textContent = category;
+td5.textContent = ele.category;
 
 var td6 = document.createElement("td");
-td6.textContent=category;
+td6.textContent=ele.category;
+
+var th1 = document.createElement("th");
+th1.textContent="Buy"
+th1.addEventListener("click",function(){
+    Bookbuy();
+})
+
+var th2 = document.createElement("th");
+th2.textContent="Bookmark"
+th2.addEventListener("click",function(){
+    Bookmark();
+})
+
+// te.append(th1,th2);
+// var thead = document.querySelector("thead");
+// thead.append(te);
 
 tr.append(td1,td2,td3,td4,td5,td6,);
 var tbody = document.querySelector("tbody");
 tbody.append(tr);
+
     
 });
 
    
 
 }
-}
+
+
+ 
+
 
 
     
